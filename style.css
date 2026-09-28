@@ -1,0 +1,25 @@
+.ggpoisk-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999999;
+  padding: 12px 20px;
+  background: #ff5500;
+  color: #fff !important;
+  font: bold 14px/1 -apple-system, "Segoe UI", Roboto, sans-serif;
+  text-decoration: none !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: transform .15s ease, background .15s ease, opacity .15s ease;
+  cursor: pointer;
+}
+
+.ggpoisk-btn:hover {
+  background: #ff7733;
+  transform: translateY(-2px);
+}
+
+.ggpoisk-btn.loading {
+  opacity: .7;
+  pointer-events: none;
+}

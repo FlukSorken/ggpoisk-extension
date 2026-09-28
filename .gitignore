@@ -1,0 +1,18 @@
+# Сборки
+*.zip
+web-ext-artifacts/
+dist/
+
+# Системные
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Редакторы
+.vscode/
+.idea/
+*.code-workspace
+
+# Node
+node_modules/
+package-lock.json
