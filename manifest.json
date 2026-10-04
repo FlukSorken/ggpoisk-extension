@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
   "name": "GGPoisk Button",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Быстрый переход со страниц Кинопоиска на зеркало для просмотра фильмов",
 
   "browser_specific_settings": {
     "gecko": {
       "id": "ggpoisk-button@fluk-sorken.github.io",
-      "strict_min_version": "115.0",
+      "strict_min_version": "140.0",
       "data_collection_permissions": {
         "required": ["none"]
       }
@@ -19,9 +19,16 @@
     "64": "icons/icon-64.png"
   },
 
+  "permissions": ["storage"],
+
   "host_permissions": [
+    "*://*.kinokino.win/*",
     "*://*.ggpoisk.ru/*",
     "*://*.sspoisk.ru/*"
+  ],
+
+  "optional_host_permissions": [
+    "*://*/*"
   ],
 
   "background": {
@@ -35,5 +42,10 @@
       "css": ["style.css"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  }
 }

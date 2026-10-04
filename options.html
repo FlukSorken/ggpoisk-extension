@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>GGPoisk Button — Настройки</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <h1>Настройки GGPoisk Button</h1>
+
+  <p class="description">
+    Список зеркал для проверки. Каждое зеркало — на отдельной строке.
+    Проверка идёт сверху вниз, открывается первое доступное.
+  </p>
+
+  <textarea id="mirrors" rows="6" spellcheck="false"></textarea>
+
+  <div class="buttons">
+    <button id="save" type="button">Сохранить</button>
+    <button id="reset" type="button" class="secondary">Сбросить по умолчанию</button>
+  </div>
+
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <details class="help">
+    <summary>Как это работает</summary>
+    <ul>
+      <li>Указывайте только домен, без <code>https://</code> и без пути.</li>
+      <li>Пример: <code>kinokino.win</code></li>
+      <li>Порядок строк = порядок проверки. Первое рабочее зеркало откроется.</li>
+      <li>Можно добавить любое зеркало, работающее по схеме <code>https://домен/film/123/</code>.</li>
+      <li>При добавлении нового домена Firefox спросит разрешение на доступ к сайтам — это нужно для проверки доступности.</li>
+    </ul>
+  </details>
+
+  <script src="options.js"></script>
+</body>
+</html>

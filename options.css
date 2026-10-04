@@ -1,0 +1,144 @@
+/* ---------- Светлая тема (по умолчанию) ---------- */
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --fg-muted: #555;
+  --border: #ccc;
+  --input-bg: #ffffff;
+  --input-fg: #1a1a1a;
+  --btn-bg: #ff5500;
+  --btn-fg: #ffffff;
+  --btn-hover: #ff7733;
+  --btn-secondary-bg: #eee;
+  --btn-secondary-fg: #333;
+  --btn-secondary-hover: #ddd;
+  --code-bg: #f4f4f4;
+  --status-ok: #0a7a0a;
+  --status-error: #c00;
+  --accent-focus: rgba(255, 85, 0, 0.2);
+}
+
+/* ---------- Тёмная тема ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1b22;
+    --fg: #fbfbfe;
+    --fg-muted: #b1b1b9;
+    --border: #52525e;
+    --input-bg: #2b2a33;
+    --input-fg: #fbfbfe;
+    --btn-bg: #ff5500;
+    --btn-fg: #ffffff;
+    --btn-hover: #ff7733;
+    --btn-secondary-bg: #3a3a44;
+    --btn-secondary-fg: #fbfbfe;
+    --btn-secondary-hover: #4a4a55;
+    --code-bg: #2b2a33;
+    --status-ok: #6ee06e;
+    --status-error: #ff7b7b;
+    --accent-focus: rgba(255, 85, 0, 0.35);
+  }
+}
+
+/* ---------- Общие стили ---------- */
+body {
+  font: 14px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 16px 20px;
+  min-width: 380px;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+h1 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+
+.description {
+  color: var(--fg-muted);
+  margin: 0 0 12px;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: 13px/1.5 Consolas, Monaco, monospace;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  resize: vertical;
+  background: var(--input-bg);
+  color: var(--input-fg);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--btn-bg);
+  box-shadow: 0 0 0 2px var(--accent-focus);
+}
+
+.buttons {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--btn-hover);
+}
+
+button.secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+}
+
+button.secondary:hover {
+  background: var(--btn-secondary-hover);
+}
+
+.status {
+  margin-top: 10px;
+  min-height: 1.2em;
+  font-size: 13px;
+  color: var(--status-ok);
+}
+
+.status.error {
+  color: var(--status-error);
+}
+
+.help {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+.help summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.help ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.help code {
+  background: var(--code-bg);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font: 12px Consolas, Monaco, monospace;
+}

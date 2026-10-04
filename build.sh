@@ -8,6 +8,9 @@ zip -r ggpoisk-extension.zip \
   background.js \
   content.js \
   style.css \
+  options.html \
+  options.css \
+  options.js \
   icons/
 
 echo "Собрано: ggpoisk-extension.zip"

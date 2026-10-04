@@ -1,6 +1,18 @@
-// Порядок проверки: сначала ggpoisk, потом sspoisk
-const MIRRORS = ['ggpoisk.ru', 'sspoisk.ru'];
-const TIMEOUT_MS = 4000;
+// Универсальный доступ к API (на случай Chrome-версии в будущем)
+const ext = (typeof browser !== 'undefined') ? browser : chrome;
+
+const DEFAULT_MIRRORS = ['kinokino.win', 'ggpoisk.ru', 'sspoisk.ru'];
+const TIMEOUT_MS = 1500;
+
+async function getMirrors() {
+  try {
+    const data = await ext.storage.local.get('mirrors');
+    if (Array.isArray(data.mirrors) && data.mirrors.length > 0) {
+      return data.mirrors;
+    }
+  } catch (_) {}
+  return DEFAULT_MIRRORS;
+}
 
 async function pingMirror(host, path, search) {
   const url = `https://${host}${path}${search}`;
@@ -15,31 +27,29 @@ async function pingMirror(host, path, search) {
       cache: 'no-store',
       credentials: 'omit'
     });
-
-    // 2xx после редиректов (ggpoisk → bulkikim) = зеркало живое
     return res.ok ? url : null;
   } catch (e) {
-    // network error / timeout / abort
     return null;
   } finally {
     clearTimeout(timer);
   }
 }
 
-browser.runtime.onMessage.addListener(async (msg) => {
+ext.runtime.onMessage.addListener(async (msg) => {
   if (!msg || msg.type !== 'resolve-mirror') return;
 
   const { path, search } = msg;
+  const mirrors = await getMirrors();
 
-  for (const host of MIRRORS) {
+  for (const host of mirrors) {
     const url = await pingMirror(host, path, search);
     if (url) return { url, host, fallback: false };
   }
 
-  // Ничего не ответило — отдаём первый, пусть браузер сам разбирается
+  // Ничего не ответило — отдаём первый из списка
   return {
-    url: `https://${MIRRORS[0]}${path}${search}`,
-    host: MIRRORS[0],
+    url: `https://${mirrors[0]}${path}${search}`,
+    host: mirrors[0],
     fallback: true
   };
 });
